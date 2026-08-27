@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
 
 class UserToggle extends Component {
-  constructor(props, context) {
-    super(props, context);
+    constructor(props, context) {
+        super(props, context);
 
-    this.handleClick = this.handleClick.bind(this);
-  }
+        this.handleClick = this.handleClick.bind(this);
+    }
 
-  handleClick(e) {
-    e.preventDefault();
+    handleClick(e) {
+        e.preventDefault();
 
-    this.props.onClick(e);
-  }
+        this.props.onClick(e);
+    }
 
-  render() {
-    return (
-      <a href="" onClick={this.handleClick} className="UserToggle">
-        {this.props.children}
-      </a>
-    );
-  }
+    render() {
+        return (
+            <a href="" onClick={this.handleClick} className="UserToggle">
+                {this.props.children}
+            </a>
+        );
+    }
 }
 
 export default UserToggle

@@ -6,13 +6,13 @@ import { coinflip as coinflipManager, jackpot as jackpotManager } from '../../ma
 
 export default function connect(io) {
 
-  coinflipManager.setSecureIo(io)
-  jackpotManager.setSecureIo(io)
+    coinflipManager.setSecureIo(io)
+    jackpotManager.setSecureIo(io)
 
-  io.on('connection', (socket) => {
-    chat(socket, io)
-    user(socket, io)
-    coinflip(socket, io)
-    jackpot(socket, io)
-  })
+    io.on('connection', (socket) => {
+        chat(socket, io)
+        user(socket, io)
+        coinflip(socket, io)
+        jackpot(socket, io)
+    })
 }

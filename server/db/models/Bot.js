@@ -7,7 +7,7 @@ var botSchema = new Schema({
     identitySecret: { type: String, required: true },
 });
 
-botSchema.statics.getBots = function(callback, error) {
+botSchema.statics.getBots = function (callback, error) {
     return this.find({}).exec().then(bots => bots.forEach(bot => callback(bot.toObject()))).catch(error);
 }
 

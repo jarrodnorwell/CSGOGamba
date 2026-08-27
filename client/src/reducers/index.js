@@ -11,13 +11,13 @@ import history from './history'
 import admin from './admin'
 
 export default combineReducers({
-  router: routerReducer,
-  auth,
-  jackpot,
-  users,
-  coinflip,
-  chat,
-  user,
-  history,
-  admin
+    router: routerReducer,
+    auth,
+    jackpot,
+    users,
+    coinflip,
+    chat,
+    user,
+    history,
+    admin
 })

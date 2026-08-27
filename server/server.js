@@ -24,8 +24,8 @@ const secureIo = socketIo.listen(server, { path: '/secure' })
 const MongoStore = connectMongoStore(session)
 
 secureIo.use(socketioJwt.authorize({
-  secret: config.auth.jwt.secret,
-  handshake: true
+    secret: config.auth.jwt.secret,
+    handshake: true
 }))
 
 app.set('port', (process.env.PORT || 3001));
@@ -37,10 +37,10 @@ connectSecureIo(secureIo)
 connectPublicIo(publicIo)
 
 app.use(session({
-  secret: config.auth.jwt.secret,
-  resave: false,
-  saveUninitialized: false,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
+    secret: config.auth.jwt.secret,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
 configureAuth(app)
@@ -50,18 +50,18 @@ app.use('/api', authRoute)
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
+    app.use(express.static(path.join(__dirname, '../client/build')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-  })
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    })
 }
 
 server.listen(app.get('port'), () => {
-  console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
+    console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
 });
 
 updatePrices(config.prices.updateInterval) //update prices for the database! woot
 if (config.rake.automatedRakeEnabled) {
-  rakeManager.startRakeInterval()
+    rakeManager.startRakeInterval()
 }

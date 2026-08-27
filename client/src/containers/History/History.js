@@ -7,138 +7,138 @@ import HistoryTableJackpot from './HistoryTableJackpot'
 import config from '../../../../config'
 
 import {
-  historyLoadCoinflip,
-  historyLoadJackpot
+    historyLoadCoinflip,
+    historyLoadJackpot
 } from '../../actions'
 
 import './History.css'
 
 const sortOptions = [
-  {
-    key: 'date ascending',
-    text: 'Latest',
-    value: 'date ascending'
-  },
-  {
-    key: 'date descending',
-    text: 'Oldest',
-    value: 'date descending'
-  },
-  {
-    key: 'value descending',
-    text: 'Highest Value',
-    value: 'value descending'
-  },
-  {
-    key: 'value ascending',
-    text: 'Lowest Value',
-    value: 'value ascending'
-  }
+    {
+        key: 'date ascending',
+        text: 'Latest',
+        value: 'date ascending'
+    },
+    {
+        key: 'date descending',
+        text: 'Oldest',
+        value: 'date descending'
+    },
+    {
+        key: 'value descending',
+        text: 'Highest Value',
+        value: 'value descending'
+    },
+    {
+        key: 'value ascending',
+        text: 'Lowest Value',
+        value: 'value ascending'
+    }
 ]
 
 class History extends Component {
 
-  constructor(props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    this.renderJackpot = this.renderJackpot.bind(this)
-    this.renderCoinflip = this.renderCoinflip.bind(this)
-    this.updateJackpotSearch = this.updateJackpotSearch.bind(this)
-    this.updateCoinflipSearch = this.updateCoinflipSearch.bind(this)
+        this.renderJackpot = this.renderJackpot.bind(this)
+        this.renderCoinflip = this.renderCoinflip.bind(this)
+        this.updateJackpotSearch = this.updateJackpotSearch.bind(this)
+        this.updateCoinflipSearch = this.updateCoinflipSearch.bind(this)
 
-    this.panes = [
-      { menuItem: 'Jackpot', render: this.renderJackpot },
-      { menuItem: 'Coinflip', render: this.renderCoinflip }
-    ]
+        this.panes = [
+            { menuItem: 'Jackpot', render: this.renderJackpot },
+            { menuItem: 'Coinflip', render: this.renderCoinflip }
+        ]
 
-    this.state = {
-      coinflipFilter: 'date ascending',
-      jackpotFilter: 'date ascending',
-      coinflipSearch: null,
-      jackpotSSearch: null
+        this.state = {
+            coinflipFilter: 'date ascending',
+            jackpotFilter: 'date ascending',
+            coinflipSearch: null,
+            jackpotSSearch: null
+        }
     }
-  }
 
-  componentWillMount() {
-    document.title = 'History - ' + config.metadata.name
-  }
-
-  onDropdownChange(game, data) {
-    if (game === 'coinflip') {
-      this.setState({ coinflipFilter: data.value })
-    } else {
-      this.setState({ jackpotFilter: data.value })
+    componentWillMount() {
+        document.title = 'History - ' + config.metadata.name
     }
-  }
 
-  updateJackpotSearch(event) {
-    if (event.key === 'Enter') {
-      this.setState({ jackpotSearch: event.target.value })
+    onDropdownChange(game, data) {
+        if (game === 'coinflip') {
+            this.setState({ coinflipFilter: data.value })
+        } else {
+            this.setState({ jackpotFilter: data.value })
+        }
     }
-  }
 
-  updateCoinflipSearch(event) {
-    if (event.key === 'Enter') {
-      this.setState({ coinflipSearch: event.target.value })
+    updateJackpotSearch(event) {
+        if (event.key === 'Enter') {
+            this.setState({ jackpotSearch: event.target.value })
+        }
     }
-  }
 
-  renderJackpot() {
-    const { jackpot } = this.props.history
-    return (
-      <Tab.Pane className="Pane">
-        <div className="History__Header">
-          <Input
-            placeholder={'Search for a player...'}
-            className="History__Input"
-            onKeyDown={this.updateJackpotSearch}
-          />
-          <Dropdown text='Sort by' icon='filter' floating labeled button className='icon' options={sortOptions} onChange={(event, data) => this.onDropdownChange('jackpot', data)} />
-        </div>
-        <HistoryTableJackpot data={jackpot.data} playerSearch={this.state.jackpotSearch} jackpot={jackpot} loadHistory={this.props.historyLoadJackpot} filter={this.state.jackpotFilter} />
-      </Tab.Pane>
-    )
-  }
+    updateCoinflipSearch(event) {
+        if (event.key === 'Enter') {
+            this.setState({ coinflipSearch: event.target.value })
+        }
+    }
 
-  renderCoinflip() {
-    const { coinflip } = this.props.history
-    return (
-      <Tab.Pane className="Pane">
-        <div className="History__Header">
-          <Input
-            placeholder={'Search for a player...'}
-            className="History__Input"
-            onKeyDown={this.updateCoinflipSearch}
-          />
-          <Dropdown text='Sort by' icon='filter' floating labeled button className='icon' options={sortOptions} onChange={(event, data) => this.onDropdownChange('coinflip', data)} />
-        </div>
-        <HistoryTableCoinflip playerSearch={this.state.coinflipSearch} data={coinflip.data} coinflip={coinflip} loadHistory={this.props.historyLoadCoinflip} filter={this.state.coinflipFilter}/>
-      </Tab.Pane>
-    )
-  }
+    renderJackpot() {
+        const { jackpot } = this.props.history
+        return (
+            <Tab.Pane className="Pane">
+                <div className="History__Header">
+                    <Input
+                        placeholder={'Search for a player...'}
+                        className="History__Input"
+                        onKeyDown={this.updateJackpotSearch}
+                    />
+                    <Dropdown text='Sort by' icon='filter' floating labeled button className='icon' options={sortOptions} onChange={(event, data) => this.onDropdownChange('jackpot', data)} />
+                </div>
+                <HistoryTableJackpot data={jackpot.data} playerSearch={this.state.jackpotSearch} jackpot={jackpot} loadHistory={this.props.historyLoadJackpot} filter={this.state.jackpotFilter} />
+            </Tab.Pane>
+        )
+    }
 
-  render() {
-    return (
-      <Tab panes={this.panes} className="History__Tab" />
-    )
-  }
+    renderCoinflip() {
+        const { coinflip } = this.props.history
+        return (
+            <Tab.Pane className="Pane">
+                <div className="History__Header">
+                    <Input
+                        placeholder={'Search for a player...'}
+                        className="History__Input"
+                        onKeyDown={this.updateCoinflipSearch}
+                    />
+                    <Dropdown text='Sort by' icon='filter' floating labeled button className='icon' options={sortOptions} onChange={(event, data) => this.onDropdownChange('coinflip', data)} />
+                </div>
+                <HistoryTableCoinflip playerSearch={this.state.coinflipSearch} data={coinflip.data} coinflip={coinflip} loadHistory={this.props.historyLoadCoinflip} filter={this.state.coinflipFilter} />
+            </Tab.Pane>
+        )
+    }
+
+    render() {
+        return (
+            <Tab panes={this.panes} className="History__Tab" />
+        )
+    }
 
 }
 
 const mapStateToProps = state => {
-  return {
-    history: state.history
-  }
+    return {
+        history: state.history
+    }
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({
-    historyLoadJackpot,
-    historyLoadCoinflip
-  }, dispatch)
+    return bindActionCreators({
+        historyLoadJackpot,
+        historyLoadCoinflip
+    }, dispatch)
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(History)

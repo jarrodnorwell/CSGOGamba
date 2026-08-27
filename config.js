@@ -1,121 +1,121 @@
 const auth = {
-  steam: {
-    apiKey: process.env.STEAM_API_KEY || '5437F779721BBC7786E89B7718A82BE0'
-  },
-  jwt: {
-    secret: process.env.JWT_SECRET || 'placeholder jwt secret'
-  }
+    steam: {
+        apiKey: process.env.STEAM_API_KEY || '5437F779721BBC7786E89B7718A82BE0'
+    },
+    jwt: {
+        secret: process.env.JWT_SECRET || 'placeholder jwt secret'
+    }
 }
 
 const api = {
-  host: process.env.NODE_ENV !== "production" ? 'http://localhost:3001/' : process.env.API_URL,
-  url: process.env.NODE_ENV !== "production" ? 'http://localhost:3001/' : '/',
+    host: process.env.NODE_ENV !== "production" ? 'http://localhost:3001/' : process.env.API_URL,
+    url: process.env.NODE_ENV !== "production" ? 'http://localhost:3001/' : '/',
 }
 
 const app = {
-  host: process.env.NODE_ENV !== "production" ? 'http://localhost:3000/' : process.env.APP_URL,
-  url: process.env.NODE_ENV !== "production" ? 'http://localhost:3000/' : '/'
+    host: process.env.NODE_ENV !== "production" ? 'http://localhost:3000/' : process.env.APP_URL,
+    url: process.env.NODE_ENV !== "production" ? 'http://localhost:3000/' : '/'
 }
 
 const database = {
-  uri: process.env.MONGODB_URI || 'mongodb://localhost',
-  redis: process.env.REDIS_URL || 'redis://localhost'
+    uri: process.env.MONGODB_URI || 'mongodb://localhost',
+    redis: process.env.REDIS_URL || 'redis://localhost'
 }
 
 const metadata = {
-  name: 'CSGOGamba',
-  url: '...',
-  email: '...',
-  discord: '...',
-  twitter: '...',
-  useLanding: true,
-  gameId: 730,
-  contextId: 2,
-  gameName: 'CSGOGamba'
+    name: 'CSGOGamba',
+    url: '...',
+    email: '...',
+    discord: '...',
+    twitter: '...',
+    useLanding: true,
+    gameId: 730,
+    contextId: 2,
+    gameName: 'CSGOGamba'
 }
 
 const coinflip = {
-  minItems: 1,
-  maxItems: 15,
-  minAmount: 1.00,
-  itemThreshold: 0.10,
+    minItems: 1,
+    maxItems: 15,
+    minAmount: 1.00,
+    itemThreshold: 0.10,
 }
 
 const jackpot = {
-  minItems: 1,
-  maxItems: 15,
-  minAmount: 2,
-  itemThreshold: 0.10,
-  game: {
-    maxItems: 60,
-    depositsToStart: 2
-  },
-  countdowns: {
-    gameCountdown: 60 // 60 seconds
-  },
-  allowedItems: ['*'],
-  numberOfPastRounds: 5,
+    minItems: 1,
+    maxItems: 15,
+    minAmount: 2,
+    itemThreshold: 0.10,
+    game: {
+        maxItems: 60,
+        depositsToStart: 2
+    },
+    countdowns: {
+        gameCountdown: 60 // 60 seconds
+    },
+    allowedItems: ['*'],
+    numberOfPastRounds: 5,
 }
 
 const tax = {
-  promo: 0.08,
-  noPromo: 0.10
+    promo: 0.08,
+    noPromo: 0.10
 }
 
 const inventory = {
-  cacheTimeout: 24 * 60 * 60, //1 day
-  reloadCooldown: 60,
-  endpoints: {
-    default: 'inventory',
-    forceReload: 'inventory/force'
-  }
+    cacheTimeout: 24 * 60 * 60, //1 day
+    reloadCooldown: 60,
+    endpoints: {
+        default: 'inventory',
+        forceReload: 'inventory/force'
+    }
 }
 
 const prices = {
-  updateInterval: 14 * 24 * 60 * 60 * 1000, //1 day
+    updateInterval: 14 * 24 * 60 * 60 * 1000, //1 day
 }
 
 const socket = {
-  public: {
-    param: 'socket-public',
-    path: ''
-  },
-  secure: {
-    param: 'socket-secure',
-    path: '/secure'
-  }
+    public: {
+        param: 'socket-public',
+        path: ''
+    },
+    secure: {
+        param: 'socket-secure',
+        path: '/secure'
+    }
 }
 
 const bots = {
-  domain: '...', // same as metadata.url
-  pollTime: 5 * 1000, /* 5 seconds */
-  cancelTime: 2 * 60 * 1000, /* 2 minutes */
-  confirmationTime: 15 * 1000, /* 15 seconds */
+    domain: '...', // same as metadata.url
+    pollTime: 5 * 1000, /* 5 seconds */
+    cancelTime: 2 * 60 * 1000, /* 2 minutes */
+    confirmationTime: 15 * 1000, /* 15 seconds */
 }
 
 const rake = {
-  automatedRakeTime: 60 * 60 * 1000, /* 1 hour */
-  rakeAccount: process.env.RAKE_ACCOUNT || '76561198987351749',
-  automatedRakeEnabled: false,
+    automatedRakeTime: 60 * 60 * 1000, /* 1 hour */
+    rakeAccount: process.env.RAKE_ACCOUNT || '76561198987351749',
+    automatedRakeEnabled: false,
 }
 
 const chat = {
-  minLevel: -1
+    minLevel: -1
 }
 
 module.exports = { //not transpiled
-  auth: auth,
-  jackpot: jackpot,
-  prices: prices,
-  api: api,
-  tax: tax,
-  app: app,
-  coinflip: coinflip,
-  socket: socket,
-  inventory: inventory,
-  database: database,
-  metadata: metadata,
-  bots: bots,
-  rake: rake,
-  chat: chat,
+    auth: auth,
+    jackpot: jackpot,
+    prices: prices,
+    api: api,
+    tax: tax,
+    app: app,
+    coinflip: coinflip,
+    socket: socket,
+    inventory: inventory,
+    database: database,
+    metadata: metadata,
+    bots: bots,
+    rake: rake,
+    chat: chat,
 }
